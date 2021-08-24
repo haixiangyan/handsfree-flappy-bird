@@ -80,13 +80,3 @@ function stopSong() {
   isSongPlaying = false;
   bgm.stop();
 }
-
-function keyPressed() {
-  if (key === ' ') {
-    if (isGameOver) {
-      resumeGame()
-    } else {
-      bird.flap()
-    }
-  }
-}

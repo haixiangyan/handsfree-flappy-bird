@@ -1,0 +1,26 @@
+.columns {
+  display: flex;
+}
+
+.column {
+  padding: 20px;
+}
+
+/* handsfree 内部类 */
+.handsfree-canvas {
+  display: none;
+}
+
+.handsfree-video,
+.handsfree-debug {
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+/* debugger */
+#debugger {
+  position: relative;
+}
