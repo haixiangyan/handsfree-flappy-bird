@@ -15,10 +15,18 @@ function draw() {
   bird.update();
   bird.show();
 
-  pipes.forEach(pipe => {
+  pipes.forEach((pipe, index) => {
     pipe.update();
     pipe.show();
+
+    if (pipe.offscreen()) {
+      pipes.splice(index, 1);
+    }
   })
+
+  if (frameCount % 100 === 0) {
+    pipes.push(new Pipe());
+  }
 }
 
 function keyPressed() {

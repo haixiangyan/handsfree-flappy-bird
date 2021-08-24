@@ -14,4 +14,9 @@ class Pipe {
   update() {
     this.x = this.x - this.velocity
   }
+
+  offscreen() {
+    // 完全退出屏幕
+    return this.x < this.width;
+  }
 }
