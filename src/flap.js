@@ -2,17 +2,26 @@ let hasFlappedUp = false;
 
 // 初始化 handsfree
 const handsfree = new Handsfree({
+  showDebug: true,
   posenet: true,
-  feedback: {
-    enabled: true,
-    $target: document.querySelector('#debugger')
+  hands: true,
+  facemesh: true,
+  setup: {
+    wrap: {
+      $parent: document.querySelector('#debugger'),
+    },
   }
 })
 
-const ctx = handsfree.feedback.$debug.getContext('2d')
+handsfree.use('logger', data => {
+  console.log(data.hands)
+})
+
+// const ctx = handsfree.feedback.$debug.getContext('2d')
 
 document.querySelector('#start-button').addEventListener('click', () => {
   handsfree.start();
+  handsfree.enablePlugins('browser')
   // document.querySelector('#button-wrap').style.display = 'none'
 })
 
