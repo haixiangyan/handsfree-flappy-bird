@@ -49,7 +49,8 @@ function draw() {
 
     // 游戏结束
     if (pipes[index].hits(bird)) {
-      endGame();
+      console.log('hit')
+    //   endGame();
     }
 
     // 柱子退出
