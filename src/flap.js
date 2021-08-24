@@ -27,13 +27,16 @@ handsfree.use('flap', {
     // 计算右手数据平均 x, y
     const rightHandDataArray = [poseLandmarks[19].x, poseLandmarks[17].x, poseLandmarks[15].x]
     const rightHandAvgData = avg(rightHandDataArray)
-    console.log('detect', leftHandAvgData, rightHandAvgData, Math.abs(rightHandAvgData - leftHandAvgData));
-    // 查看相差值
-    if (Math.abs(rightHandAvgData - leftHandAvgData) < 0.5) {
+    const delta = Math.abs(rightHandAvgData - leftHandAvgData) < 0.1;
+    console.log('detect', leftHandAvgData, rightHandAvgData, delta);
+    // 准备
+    if (delta >= 0.1) {
+      hasFlappedUp = true;
+    }
+    // 起飞
+    if (hasFlappedUp && Math.abs(rightHandAvgData - leftHandAvgData) < 0.1) {
       hasFlappedUp = false;
       bird.flap()
-    } else {
-      hasFlappedUp = true;
     }
   }
 })
