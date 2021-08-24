@@ -11,12 +11,12 @@ class Bird {
     this.velocity = 0 // 变速
   }
 
-  up() {
+  flap() {
     // 修改速度方向
     this.velocity = this.velocity === 0 ? this.initVelocity : this.velocity + this.lift;
   }
 
-  show() {
+  draw() {
     fill(255)
     ellipse(this.x, this.y, this.width, this.height)
   }
@@ -36,5 +36,7 @@ class Bird {
       this.y = height;
       this.velocity = 0;
     }
+
+    this.draw();
   }
 }

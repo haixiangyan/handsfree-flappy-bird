@@ -1,3 +1,4 @@
+let isGameOver = false;
 let bird;
 let pipes = [];
 
@@ -12,29 +13,37 @@ function setup() {
 function draw() {
   background('#000')
 
-  bird.show();
-  bird.update();
-
-  for(let i = pipes.length - 1; i >= 0; i--) {
-    pipes[i].show();
-    pipes[i].update();
-
-    if (pipes[i].hits(bird)) {
-      console.log('HIT')
+  for(let index = pipes.length - 1; index >= 0; index--) {
+    if (isGameOver) {
+      pipes[index].draw();
+    } else {
+      pipes[index].update();
     }
 
-    if (pipes[i].offscreen()) {
-      pipes.splice(i, 1);
+    // 游戏结束
+    if (pipes[index].hits(bird)) {
+      isGameOver = true;
+    }
+
+    // 柱子退出
+    if (pipes[index].isOffScreen()) {
+      pipes.splice(index, 1);
     }
   }
 
-  if (frameCount % 75 === 0) {
-    pipes.push(new Pipe());
+  if (frameCount % 75 === 0 && !isGameOver) {
+    pipes.push(new Pipe()); // 添加新 Pipe
+  }
+
+  if (isGameOver) {
+    bird.draw() // 定格
+  } else {
+    bird.update() // 继续游戏，更新
   }
 }
 
 function keyPressed() {
   if (key === ' ') {
-    bird.up()
+    bird.flap()
   }
 }

@@ -9,7 +9,7 @@ class Pipe {
     this.highlight = false;
   }
 
-  show() {
+  draw() {
     fill(255)
     if (this.highlight) {
       fill(255, 0, 0);
@@ -20,9 +20,10 @@ class Pipe {
 
   update() {
     this.x = this.x - this.velocity
+    this.draw()
   }
 
-  offscreen() {
+  isOffScreen() {
     // 完全退出屏幕
     return this.x < -this.width;
   }
