@@ -12,17 +12,21 @@ function setup() {
 function draw() {
   background('#000')
 
-  bird.update();
   bird.show();
+  bird.update();
 
-  pipes.forEach((pipe, index) => {
-    pipe.update();
-    pipe.show();
+  for(let i = pipes.length - 1; i >= 0; i--) {
+    pipes[i].show();
+    pipes[i].update();
 
-    if (pipe.offscreen()) {
-      pipes.splice(index, 1);
+    if (pipes[i].hits(bird)) {
+      console.log('HIT')
     }
-  })
+
+    if (pipes[i].offscreen()) {
+      pipes.splice(i, 1);
+    }
+  }
 
   if (frameCount % 100 === 0) {
     pipes.push(new Pipe());
