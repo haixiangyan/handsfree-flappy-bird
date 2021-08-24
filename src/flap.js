@@ -11,7 +11,7 @@ const handsfree = new Handsfree({
   pose: true,
   setup: {
     wrap: {
-      $parent: document.querySelector('#debugger'),
+      $parent: $debugger,
     },
   }
 })
@@ -40,9 +40,11 @@ handsfree.use('flap', {
   }
 })
 
-document.querySelector('#start-button').addEventListener('click', () => {
+$startBtn.addEventListener('click', () => {
+  isGameOver = false;
   handsfree.start();
   handsfree.enablePlugins('browser')
+  playSong()
 })
 
 function keyPressed() {

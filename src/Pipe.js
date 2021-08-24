@@ -8,11 +8,23 @@ class Pipe {
     this.x = width;
     this.width = 80
     this.velocity = 6;
+    this.hasScored = false;
   }
 
   update() {
     this.x = this.x - this.velocity
+    this.checkIfScored()
     this.draw()
+  }
+
+  checkIfScored() {
+    const rangeStart = this.x + this.width / 2;
+    const rangeEnd = this.x + this.width;
+    if (rangeStart < bird.x && bird.x < rangeEnd && !this.hits() && !this.hasScored) {
+      score += 1;
+      this.hasScored = true;
+      $score.innerHTML = score.toString()
+    }
   }
 
   isOffScreen() {
@@ -20,7 +32,7 @@ class Pipe {
     return this.x < -this.width;
   }
 
-  hits(bird) {
+  hits() {
     // 进入范围
     if (bird.x > this.x && bird.x < this.x + this.width) {
       if (bird.y < this.top || bird.y > height - this.bottom) {

@@ -1,9 +1,15 @@
-let isGameOver = false;
+// 变量
+let isGameOver = true;
+let score = 0;
 let bird;
 let birdImage;
 let bgm;
 let pipes = [];
 let isSongPlaying = false;
+// DOM
+const $score = document.querySelector('#score')
+const $startBtn = document.querySelector('#start-button');
+const $debugger = document.querySelector('#debugger');
 
 // 重新开始游戏
 function resumeGame() {
@@ -19,24 +25,22 @@ function endGame() {
   stopSong()
 }
 
-// 预加载
+// 内置函数：预加载
 function preload() {
   birdImage = loadImage('assets/bird.png')
   bgm = loadSound('assets/bgm.mp3')
 }
 
-// 初始化
+// 内置函数：初始化
 function setup() {
   let canvas = createCanvas(640, 480)
   canvas.parent('#sketch-container');
 
   bird = new Bird();
   pipes.push(new Pipe())
-
-  playSong()
 }
 
-// 绘制图形（一直循环在执行）
+// 内置函数：绘制图形（一直循环在执行）
 function draw() {
   background('#70c5ce')
 
@@ -49,8 +53,8 @@ function draw() {
 
     // 游戏结束
     if (pipes[index].hits(bird)) {
-      console.log('hit')
-    //   endGame();
+      // TODO: 太难了玩了，先不开启游戏结束
+      // endGame();
     }
 
     // 柱子退出
@@ -70,13 +74,15 @@ function draw() {
   }
 }
 
+// 播放 bgm
 function playSong() {
   if (!isSongPlaying) {
     isSongPlaying = true;
-    // bgm.play()
+    bgm.play()
   }
 }
 
+// 停止播放
 function stopSong() {
   isSongPlaying = false;
   bgm.stop();

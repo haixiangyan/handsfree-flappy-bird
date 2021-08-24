@@ -8,7 +8,7 @@
 
 /* handsfree 内部类 */
 .handsfree-canvas {
-  /*display: none;*/
+  display: none;
 }
 
 .handsfree-video,
