@@ -6,10 +6,17 @@ let birdImage;
 let bgm;
 let pipes = [];
 let isSongPlaying = false;
+let isHard = false;
 // DOM
 const $score = document.querySelector('#score')
 const $startBtn = document.querySelector('#start-button');
 const $debugger = document.querySelector('#debugger');
+const $hardCheckbox = document.querySelector('#hard-checkbox')
+
+// 调节难度
+$hardCheckbox.addEventListener('change', function (checkbox) {
+  isHard = $hardCheckbox.value === 'on';
+})
 
 // 重新开始游戏
 function resumeGame() {
@@ -53,8 +60,10 @@ function draw() {
 
     // 游戏结束
     if (pipes[index].hits(bird)) {
-      // TODO: 太难了玩了，先不开启游戏结束
-      // endGame();
+      // 太难了玩了，通过这个调节难度
+      if (isHard) {
+        endGame();
+      }
     }
 
     // 柱子退出
