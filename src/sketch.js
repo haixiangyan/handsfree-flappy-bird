@@ -38,7 +38,7 @@ function setup() {
 
 // 绘制图形（一直循环在执行）
 function draw() {
-  background('#000')
+  background('#70c5ce')
 
   for(let index = pipes.length - 1; index >= 0; index--) {
     if (isGameOver) {
@@ -58,7 +58,7 @@ function draw() {
     }
   }
 
-  if (frameCount % 120 === 0 && !isGameOver) {
+  if (frameCount % 75 === 0 && !isGameOver) {
     pipes.push(new Pipe()); // 添加新 Pipe
   }
 
