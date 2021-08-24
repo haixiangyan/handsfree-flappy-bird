@@ -1,15 +1,19 @@
 class Bird {
-  x = 64
-  y = height / 2
-  width = 20
-  height = 20
-  gravity = 0.6
-  lift = -15 // 上升
-  velocity = 0 // 变速
+  constructor() {
+    this.x = 64
+    this.y = height / 2
+    this.width = 32
+    this.height = 32
+
+    this.gravity = 0.5
+    this.lift = -16 // 上升
+    this.initVelocity = -12 // 初速度
+    this.velocity = 0 // 变速
+  }
 
   up() {
     // 修改速度方向
-    this.velocity = this.velocity + this.lift;
+    this.velocity = this.velocity === 0 ? this.initVelocity : this.velocity + this.lift;
   }
 
   show() {
@@ -19,7 +23,7 @@ class Bird {
 
   update() {
     // 变速
-    this.velocity = (this.velocity + this.gravity) * 0.9;
+    this.velocity = this.velocity + this.gravity;
     // 当前位置
     this.y = this.y + this.velocity;
 

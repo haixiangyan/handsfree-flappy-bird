@@ -1,10 +1,13 @@
 class Pipe {
-  x = width;
-  top = random(height / 2)
-  bottom = random(height / 2)
-  width = 20
-  velocity = 2;
-  highlight = false;
+  constructor() {
+    this.spacing = 200
+    this.top = random(height / 6, (3 / 4) * height)
+    this.bottom = height - (this.top + this.spacing)
+    this.x = width;
+    this.width = 80
+    this.velocity = 2;
+    this.highlight = false;
+  }
 
   show() {
     fill(255)
