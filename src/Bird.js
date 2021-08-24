@@ -17,8 +17,7 @@ class Bird {
   }
 
   draw() {
-    fill(255)
-    ellipse(this.x, this.y, this.width, this.height)
+    image(birdImage, this.x - this.width, this.y - this.height)
   }
 
   update() {
