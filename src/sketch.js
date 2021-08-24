@@ -2,6 +2,13 @@ let isGameOver = false;
 let bird;
 let pipes = [];
 
+// 重新开始游戏
+function resumeGame() {
+  bird.y = height / 2;
+  isGameOver = false;
+  pipes = [];
+}
+
 function setup() {
   let canvas = createCanvas(640, 480)
   canvas.parent('#sketch-container');
