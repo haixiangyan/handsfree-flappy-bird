@@ -22,18 +22,21 @@ handsfree.use('flap', {
     // 数据可参考：https://handsfree.js.org/ref/model/pose.html#with-config
     const { poseLandmarks } = data.pose;
     // 计算左手数据平均 x, y
-    const leftHandDataArray = [poseLandmarks[20].x, poseLandmarks[18].x, poseLandmarks[16].x]
-    const leftHandAvgData = avg(leftHandDataArray) * 100
+    const leftHandDataArray = [poseLandmarks[20].y, poseLandmarks[18].y, poseLandmarks[16].y]
+    const leftHandAvgData = avg(leftHandDataArray)
     // 计算右手数据平均 x, y
-    const rightHandDataArray = [poseLandmarks[19].x, poseLandmarks[17].x, poseLandmarks[15].x]
-    const rightHandAvgData = avg(rightHandDataArray) * 100
-    const delta = Math.abs(rightHandAvgData - leftHandAvgData);
+    const rightHandDataArray = [poseLandmarks[19].y, poseLandmarks[17].y, poseLandmarks[15].y]
+    const rightHandAvgData = avg(rightHandDataArray)
+    // 左肩数据
+    const leftShoulderData = poseLandmarks[12].y;
+    // 右肩数据
+    const rightShoulderData = poseLandmarks[11].y;
     // 准备
-    if (delta >= 30) {
+    if (leftHandAvgData > leftShoulderData && rightHandAvgData > rightShoulderData) {
       hasFlappedUp = true;
     }
     // 起飞
-    if (hasFlappedUp && delta < 10) {
+    if (hasFlappedUp && leftHandAvgData < leftShoulderData && rightHandAvgData < rightShoulderData) {
       hasFlappedUp = false;
       bird.flap()
     }
